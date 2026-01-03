@@ -24,7 +24,8 @@ test.only('Browswer Context First playwright test', async ({ browser, page })=>
     console.log(await cardTitles.nth(1).textContent());
 
     //Select all cards
-    const allTitles = await cardTitles.allTextContents();
+    const allTitles = await cardTitles.allTextContents(); //aTC doesn't wait for things to get attaced to dom
+    console.log(allTitles);
 
 });
 
