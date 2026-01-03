@@ -5,19 +5,27 @@ test.only('Browswer Context First playwright test', async ({ browser, page })=>
 {
     const userName = page.locator('#username');
     const signIn = page.locator('#signInBtn');
-
+    const cardTitles = page.locator(".card-body a")
     // const context = await browser.newContext(); // new browser
     // const page = await context.newPage(); // new page in browser
     await page.goto('https://rahulshettyacademy.com/loginpagePractise/')
-    await userName.fill('rahulshetty')
+    await userName.fill('rahulshettyacademy')
     await page.locator('[type="password"]').fill('learning')
     await signIn.click();
-    console.log(await page.locator("[style*='block']").textContent());
-    await expect(page.locator("[style*='block']")).toContainText('Incorrect username/password.')
+    //console.log(await page.locator("[style*='block']").textContent());
+    //await expect(page.locator("[style*='block']")).toContainText('Incorrect username/password.')
     //
-    await userName.fill('');
+    await userName.fill(''); //Clears field
     await userName.fill('rahulshettyacademy');
     await signIn.click();
+
+    //Select specific 
+    console.log(await cardTitles.first().textContent());
+    console.log(await cardTitles.nth(1).textContent());
+
+    //Select all cards
+    const allTitles = await cardTitles.allTextContents();
+
 });
 
 //default way
